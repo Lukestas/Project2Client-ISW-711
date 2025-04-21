@@ -1,0 +1,249 @@
+.video-page-container {
+    .Options {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        align-items: center;
+
+        .logout-button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .redirection-buttons {
+            display: flex;
+            gap: 10px;
+
+            .add-video-button {
+                display: block;
+                background-color: #1ca2c4;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .back-button {
+                display: block;
+                background-color: #eee019;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .playlist-button {
+                display: block;
+                background-color: #ca20c2;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .video-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        justify-items: center;
+        margin-bottom: 40px;
+
+        .video-front {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+            justify-content: space-between;
+
+            .video-name {
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 80px;
+                text-align: center;
+                padding: 5px;
+            }
+
+            .video-buttons {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+
+                button {
+                    display: inline-block;
+                    background-color: #3498db;
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    border: none;
+                    font-size: 14px;
+                    cursor: pointer;
+
+                    &.playlist {
+                        background-color: #27ae60;
+                    }
+
+                    &.edit {
+                        background-color: #f39c12;
+                    }
+
+                    &.delete {
+                        background-color: #e74c3c;
+                    }
+                }
+            }
+        }
+    }
+
+    .assign-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .children-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .child-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            gap: 5px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+            width: 80px; 
+            height: 120px; 
+            text-align: center;
+
+            &.selected {
+              border: 2px solid green; 
+            }
+
+            .child-avatar {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            span {
+                font-size: 1rem;
+                color: #333;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 60px;
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .assign,
+        .cancel {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 48%;
+        }
+
+        .assign {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .cancel {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .assign {
+            background-color: #45a049;
+        }
+
+        .cancel {
+            background-color: #e53935;
+        }
+    }
+
+
+
+}

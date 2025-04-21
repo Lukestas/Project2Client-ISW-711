@@ -1,0 +1,178 @@
+.home-container {
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+
+  .Options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    .logout-button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .redirection-buttons {
+      display: flex;
+      gap: 10px;
+
+      .add-child-button {
+        display: block;
+        background-color: #27ae60;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .video-button {
+        display: block;
+        background-color: #27cef8;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .playlist-button {
+        display: block;
+        background-color: #ca20c2;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .children-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    justify-items: auto;
+    margin-bottom: 40px;
+
+    .child-avatar {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      cursor: pointer;
+
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+
+  .pin-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    .modal-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+
+      h2 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        input {
+          padding: 10px;
+          border-radius: 5px;
+          border: 1px solid #ccc;
+          font-size: 16px;
+          outline: none;
+        }
+
+        .error-message {
+          color: red;
+          font-size: 14px;
+          margin-top: -10px;
+        }
+      }
+
+      .modal-buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+
+        button {
+          background-color: #3498db;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 5px;
+          margin: 1%;
+          border: none;
+          cursor: pointer;
+
+
+          &.cancel {
+            background-color: #95a5a6;
+
+
+          }
+
+          &.delete {
+            background-color: #e74c3c;
+
+
+          }
+
+          &.edit {
+            background-color: #f39c12;
+
+
+          }
+
+          &.enter {
+            background-color: #1abc9c;
+
+
+          }
+        }
+      }
+    }
+  }
+}
