@@ -17,18 +17,18 @@ function RegisterPage() {
   const onSubmit = handleSubmit(async (values) => {
     await signup(values);
   })
-  
+
   return (
     <div className='form-container'>
-      
+
       <form className="form-register" onSubmit={onSubmit}>
-      {
-        registerErrors.map((error,i)=>(
-          <div className='Error-Backend' key={i}>
-            {error}
-          </div>
-        ))
-      }
+        {
+          registerErrors.map((error, i) => (
+            <div className='Error-Backend' key={i}>
+              {error}
+            </div>
+          ))
+        }
         <h1 className='title-register'>Registro de padre</h1>
         <div className='input-container'>
           <label htmlFor="">Nombre: <span className="required">*</span></label>
@@ -77,10 +77,10 @@ function RegisterPage() {
         </div>
         <div className='input-container'>
           <label htmlFor="">Telefono: <span className="required">*</span></label>
-          <input autoComplete='off' className="inputs" type="number" {...register("phone", { required: true })} placeholder='Telefono' />
+          <input autoComplete='off' className="inputs" type="number" {...register("phone", { required: true , minLength: 8, maxLength:8})} placeholder='Telefono' />
           {
             errors.phone && (
-              <p className='required'>Se requiere un numero telefonico</p>
+              <p className='required'>Se requiere un numero telefonico de 8 digitos</p>
             )
           }
         </div>

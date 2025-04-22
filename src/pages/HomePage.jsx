@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { getChildrensRequest, deleteChildByID, getParentRequest } from '../api/auth';
+import { deleteChildByID, getParentRequest } from '../api/auth';
 import { useAuth } from '../context/AuthContext';
 import { useForm } from 'react-hook-form';
 import "./scss/HomePage.scss"
 import { useNavigate } from 'react-router-dom';
+import { getChildrensByParentId } from '../api/graphqlQuerys';
 
 function HomePage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -21,8 +22,9 @@ function HomePage() {
 
     const getChildrens = async () => {
       try {
-        const Childs = await getChildrensRequest();
-        setChildrens(Childs.data)
+        const Parent = await getParentRequest();
+        const Childs = await getChildrensByParentId(Parent.data._id);
+        setChildrens(Childs)
       } catch (error) {
         console.log("Error al obtener los niños: ", error);
       }
