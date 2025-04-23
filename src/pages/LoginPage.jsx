@@ -6,16 +6,16 @@ import { useEffect } from "react";
 
 
 function LoginPage() {
-  
+
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { signin, isAuthenticated,errors: signinErrors } = useAuth();
-  const navigate=useNavigate()
+  const { signin, isAuthenticated, errors: signinErrors } = useAuth();
+  const navigate = useNavigate()
 
   useEffect(() => {
-      if (isAuthenticated) navigate('/home')
-    }, [isAuthenticated])
+    if (isAuthenticated) navigate('/home')
+  }, [isAuthenticated])
 
-  const onSubmit = handleSubmit( (data) => {
+  const onSubmit = handleSubmit((data) => {
     signin(data);
   })
 

@@ -1,21 +1,27 @@
 import { useForm } from 'react-hook-form'
 import './scss/RegisterPage.scss'
 import { useAuth } from '../context/AuthContext';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { registerParentRequest } from '../api/auth';
 
 function RegisterPage() {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { signup, isAuthenticated, errors: registerErrors } = useAuth();
+  const { errors: registerErrors } = useAuth();
   const navigate = useNavigate();
+  const [error, setError] = useState('')
 
-  useEffect(() => {
-    if (isAuthenticated) navigate('/home')
-  }, [isAuthenticated])
+  
 
   const onSubmit = handleSubmit(async (values) => {
-    await signup(values);
+    try {
+      console.log('Datos enviados:', values);
+          await registerParentRequest(values);
+          navigate("/verification")
+        } catch (error) {
+          setError("Error al ingresar el padre")
+        }
   })
 
   return (

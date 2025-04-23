@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { getOneVideoRequest, updateVideoRequest } from "../../api/auth"
 import { useEffect, useState } from "react"
@@ -40,7 +40,7 @@ function editVideoPage() {
     return (
         <div className="edit-video-container">
             <form className='form-edit' onSubmit={onSubmit}>
-                <h1 className='title-edit'>Editar Perfil del Niño</h1>
+                <h1 className='title-edit'>Editar Video</h1>
                 {error && <p className="error-message">{error}</p>}
                 <div className="input-container">
                     <label>Nombre:</label>

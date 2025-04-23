@@ -21,6 +21,8 @@ import CreatePlaylist from './components/createPlaylist/CreatePlaylistPage';
 import EditPlaylistPage from './components/EditPlaylist/EditPlaylistPage';
 
 import ChildVideoPlay from './pages/ChildVideoPage'
+import VerificationPage from './pages/VerificationPage';
+import VerificationMail from './pages/VerificationMail';
 
 function App() {
   return (
@@ -32,7 +34,9 @@ function App() {
               <Route path='/' element={<LoginPage />} />
               <Route path='/register' element={<RegisterPage />} />
               <Route path="*" element={<h1>La pagina no existe</h1>} />
-
+              <Route path='/verification' element={<VerificationPage />} />
+              <Route path='/verify-email' element={<VerificationMail />} />
+              
               <Route element={<ProtectedRoute />}>
                 <Route path='/home' element={<HomePage />} />
 

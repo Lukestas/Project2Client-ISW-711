@@ -1,26 +1,26 @@
-const GRAPHQL_ENDPOINT = 'http://localhost:3001/graphql';
+import axios from "./axios";
+
+//Communication with the server using GraphQL
+//This function sends a GraphQL request to the server and returns the response data
 
 export async function graphqlRequest(query, variables = {}) {
     try {
-        const response = await fetch(GRAPHQL_ENDPOINT, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                query,
-                variables,
-            }),
-        });
 
-        const result = await response.json();
-
-        if (result.errors) {
-            console.error('GraphQL Errors:', result.errors);
-            throw new Error('Error en la consulta GraphQL');
+        const config={
+            headers:{}
         }
 
-        return result.data;
+        const response= await axios.post('/graphql', {
+            query,
+            variables,
+        }, config);
+
+        if (response.data.errors) {
+            console.error('GraphQL Errors:', response.data.errors);
+            throw new Error(response.data.errors[0]?.message || 'Error en la consulta GraphQL');
+          }
+
+          return response.data.data;
     } catch (error) {
         console.error('Error en la solicitud GraphQL:', error);
         throw error;

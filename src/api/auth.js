@@ -1,37 +1,38 @@
 import axios from './axios'
 
-export const registerParentRequest = async (Parent) => axios.post(`auth/register`, Parent)
-export const loginParentRequest = async (Parent) => axios.post(`auth/login`, Parent)
-export const verifyTokenRequest = async (Parent) => axios.get(`auth/verify`, Parent)
-export const logoutParentRequest = async () => axios.post(`auth/logout`)
-export const getParentRequest = async () => axios.get('auth/parent')
+export const registerParentRequest = async (Parent) => axios.post(`api/auth/register`, Parent)
+export const loginParentRequest = async (Parent) => axios.post(`api/auth/login`, Parent)
+export const verifyTokenRequest = async (Parent) => axios.get(`api/auth/verify`, Parent)
+export const logoutParentRequest = async () => axios.post(`api/auth/logout`)
+export const getParentRequest = async () => axios.get('api/auth/parent')
 
-export const getChildrensRequest = () => axios.get("childrens");
+export const getChildrensRequest = () => axios.get("api/childrens");
 
-export const registerChildrenRequest = async (Child) => axios.post(`register-child`, Child)
-export const getChildRequest = (id) => axios.get(`child?id=${id}`);
-export const updateChildRequest = async (id, Child) => axios.put(`child`, Child, { params: { id } });
-export const deleteChildByID = (id) => axios.delete("child", { params: { id } });
+export const registerChildrenRequest = async (Child) => axios.post(`api/register-child`, Child)
+export const getChildRequest = (id) => axios.get(`api/child?id=${id}`);
+export const updateChildRequest = async (id, Child) => axios.put(`api/child`, Child, { params: { id } });
+export const deleteChildByID = (id) => axios.delete("api/child", { params: { id } });
 
-export const getVideosRequest = async (Videos) => axios.get(`videos`, Videos);
+export const getVideosRequest = async (Videos) => axios.get(`api/videos`, Videos);
 
-export const registerVideoRequest = async (Video) => axios.post(`video`, Video)
-export const getAllVideosRequest = () => axios.get(`allvideos`);
-export const getOneVideoRequest = async (id) => axios.get("video", { params: { id } });
-export const updateVideoRequest = async (id, Video) => axios.put(`video`, Video, { params: { id } });
+export const registerVideoRequest = async (Video) => axios.post(`api/video`, Video)
+export const getAllVideosRequest = () => axios.get(`api/allvideos`);
+export const getOneVideoRequest = async (id) => axios.get("api/video", { params: { id } });
+export const updateVideoRequest = async (id, Video) => axios.put(`api/video`, Video, { params: { id } });
 
-export const disableVideoResquest = async (id) => axios.put(`disablevideo`, { videoId: id });
+export const disableVideoResquest = async (id) => axios.put(`api/disablevideo`, { videoId: id });
 
 
-export const removeVideoFromPlaylist = async (id, Video) => axios.put(`removevideo/playlist?id=${id}`, { videoId: Video })
+export const removeVideoFromPlaylist = async (id, Video) => axios.put(`api/removevideo/playlist?id=${id}`, { videoId: Video })
 
-export const getOnePlayListRequest = async (id) => axios.get("playlist", { params: { id } })
-export const getAllPlaylistsRequest = () => axios.get("allplaylist");
-export const createPlaylistRequest = async (name) => axios.post("playlist", { name: name })
-export const deletePlaylistRequest = async (id) => axios.delete("playlist", { data: { playlistID: id } });
-export const updatePlaylistRequest = async (id, name) => axios.put(`playlist?id=${id}`, name)
+export const getOnePlayListRequest = async (id) => axios.get("api/playlist", { params: { id } })
+export const getAllPlaylistsRequest = () => axios.get("api/allplaylist");
+export const createPlaylistRequest = async (name) => axios.post("api/playlist", { name: name })
+export const deletePlaylistRequest = async (id) => axios.delete("api/playlist", { data: { playlistID: id } });
+export const updatePlaylistRequest = async (id, name) => axios.put(`api/playlist?id=${id}`, name)
 
-export const assignPlaylistToChildRequest = async (childId, playlistId) => axios.put('assignPlaylist', { childId, playlistId })
+export const assignPlaylistToChildRequest = async (childId, playlistId) => axios.put('api/assignPlaylist', { childId, playlistId })
 
-export const addVideoToPlaylist = async (id, Video) => axios.put(`addvideo/playlist?id=${id}`, { videoId: Video })
+export const addVideoToPlaylist = async (id, Video) => axios.put(`api/addvideo/playlist?id=${id}`, { videoId: Video })
+export const vertifyEmailRequest = async (token) => axios.get(`api/auth/verify-email?token=${token}`)
 
