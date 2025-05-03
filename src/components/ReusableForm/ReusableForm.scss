@@ -49,18 +49,18 @@
 
       .avatar-selection {
         display: flex;
-        flex-direction: column; // Mantén el título y las imágenes en columnas
-        gap: 10px; // Espaciado entre el título y las imágenes
+        flex-direction: column;
+        gap: 10px;
         padding: 10px;
         background: #f9f9f9;
         border-radius: 10px;
 
         .avatars {
-          display: grid; // Coloca las imágenes en una fila
+          display: grid; 
           grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-          gap: 10px; // Espaciado entre las imágenes
-          justify-content: center; // Centra las imágenes horizontalmente
-          width: 100%; // Asegura que el contenedor ocupe todo el ancho disponible
+          gap: 10px; 
+          justify-content: center; 
+          width: 100%;
         }
 
         .avatar {
@@ -73,7 +73,7 @@
           object-fit: cover;
 
           &.selected {
-            border-color: #0bf358; // Color para el avatar seleccionado
+            border-color: #0bf358;
           }
         }
       }
