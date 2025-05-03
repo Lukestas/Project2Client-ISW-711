@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { useAuthChild } from "../../context/AuthChildContext";
-import './RegisterChildPage.scss'
-import { getParentRequest, registerChildrenRequest } from "../../api/auth";
+import React, { useEffect, useState } from "react";
+import ReusableForm from "../ReusableForm/ReusableForm";
+import { registerChildrenRequest } from "../../api/auth";
+import { useNavigate } from "react-router-dom";
 
 const avatars = [
   "/avatars/avatar0.png",
@@ -18,61 +16,50 @@ const avatars = [
 ];
 
 function RegisterChildPage() {
+  const [errors, setErrors] = useState(null);
+  const navigate= useNavigate()
+  
+  const fields=[
+    { type: 'text', name: 'name', label: 'Nombre del niño', required: true },
+    { type: 'number', name: 'pin', label: 'PIN', required: true, minLength: 4, maxLength: 6 },
+    { type: 'avatar', name: 'avatar', label: 'Avatar', options: avatars }
+  ]
+  
+  useEffect(() => {
+    if (errors) {
+      const timer = setTimeout(() => {
+        setErrors(null);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [errors]);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);
-  const [parentPin, setParentPin] = useState('')
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
-
-  const onSubmit = handleSubmit(async (values) => {
+  const handleRegisterChild = async (formData) => {
     try {
-      await registerChildrenRequest({ ...values, avatar: selectedAvatar });
+      const ChildRegisterResquest= await registerChildrenRequest(formData)
+      if (!ChildRegisterResquest.data) {
+        console.log('ChildRegisterResquest', ChildRegisterResquest)
+        setErrors(ChildRegisterResquest.data)
+      }
       navigate("/home")
     } catch (error) {
-      setError("Error al ingresar el niño")
+      console.log('Error al registrar el niño:', error.response?.data?.[0], error)
+      setErrors(error.response?.data?.[0])
     }
-
-  })
+  }
 
   return (
     <div className="form-container">
-      <form className="form-register" onSubmit={onSubmit}>
-        <h1 className='title-register'>Registrar Niño</h1>
-        {error && <p className="error-message">{error}</p>}
-        <div className="input-container">
-          <label>Nombre del niño</label>
-          <input type="text" className="inputs"{...register('name', { required: true })} />
-          {errors.name && <p className="required">Se requiere un nombre</p>}
-        </div>
-
-        <div className="input-container">
-          <label>PIN</label>
-          <input type="number" className="inputs"{...register('pin', { required: true, minLength: 4, maxLength: 6 })} />
-          {errors.pin && <p className="required">Se requiere un PIN de 6 dígitos</p>}
-        </div>
-
-        <div className='input-container'>
-          <label>Avatar</label>
-          <div className="avatar-selection">
-            {avatars.map((avatar, i) => (
-              <img
-                key={i}
-                src={avatar}
-                alt={`Avatar ${i + 1}`}
-                className={`avatar ${selectedAvatar === avatar ? "selected" : ""}`}
-                onClick={() => setSelectedAvatar(avatar)}
-              />
-            ))}
-          </div>
-        </div>
-        <div className='button-container'>
-          <button className="buttons" type="submit">Actualizar</button>
-        </div>
-        <div className="cancel-link">
-          <Link to="/">Cancelar</Link>
-        </div>
-      </form>
+      <ReusableForm
+        error={errors}
+        fields={fields}
+        formName="register-child-form"
+        formTitle="Registro de niño"
+        formAction="Registrar"
+        formReturnText="¿Deseas Volver?"
+        formReturnDirection="/Home"
+        onSubmit={handleRegisterChild}
+      />
     </div>
   );
 }

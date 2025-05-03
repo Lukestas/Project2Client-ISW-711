@@ -14,26 +14,29 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
     const [parent, setParent] = useState(null)
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState(null)
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        if (errors.length > 0) {
+        if (errors) {
             const timer = setTimeout(() => {
-                setErrors([])
-            }, 2500)
-            return () => clearTimeout(timer)
+                setErrors(null);
+            }, 3000);
+            return () => clearTimeout(timer);
         }
-    }, [errors])
+    }, [errors]);
 
     const signup = async (parent) => {
         try {
-            const res = await registerParentRequest(parent);
-            setParent(res.data)
+            const ParentRequestLogin = await registerParentRequest(parent);
+            if (!ParentRequestLogin.data) {
+                console.log('ParentRequestLogin', ParentRequestLogin.data)
+                setErrors(ParentRequestLogin.data)
+            }
+            setParent(ParentRequestLogin.data)
             setIsAuthenticated(true);
-
         } catch (error) {
-            setErrors(error.response.data)
+            setErrors(error.response?.data?.[0]);
         }
     };
 

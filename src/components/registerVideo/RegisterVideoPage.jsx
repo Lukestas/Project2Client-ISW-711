@@ -1,48 +1,51 @@
-import './RegisterVideoPage.scss'
-import { useForm } from 'react-hook-form'
 import { registerVideoRequest } from '../../api/auth'
-import { Link, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
+import ReusableForm from '../ReusableForm/ReusableForm'
+import { useEffect, useState } from 'react'
 
 
 function RegisterVideoPage() {
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const [errors, setErrors] = useState(null)
     const navigate = useNavigate()
 
-    const onSubmit = handleSubmit(async (values) => {
+    const fields = [
+        { type: 'text', name: 'name', label: 'Nombre del video', required: true },
+        { type: 'text', name: 'URL', label: 'Enlace del video', required: true },
+        { type: 'text', name: 'description', label: 'Descripcion', required: true },
+    ]
+    
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setErrors(null)
+        }, 3000)
+        return () => clearTimeout(timer)
+    }, [errors])
+
+    const handleAdd=async (formData) => {
         try {
-            await registerVideoRequest(values);
+            const VideoAddResquest=await registerVideoRequest(formData);
+            if (!VideoAddResquest.data) {
+                console.log('VideoAddResquest', VideoAddResquest)
+                setErrors(VideoAddResquest.data)
+            }
             navigate("/videogestor")
         } catch (error) {
-            console.log(error)
+            setErrors(error.response?.data?.[0])
         }
-    })
+    }
 
     return (
         <div className='form-container'>
-            <form className="form-register" onSubmit={onSubmit}>
-                <h1 className='title-register'>Registrar un video</h1>
-                <div className="input-container">
-                    <label>Nombre del video</label>
-                    <input type="text" className="inputs"{...register('name', { required: true })} />
-                    {errors.name && <p className="required">Se requiere un nombre</p>}
-                </div>
-                <div className="input-container">
-                    <label>Enlace del video</label>
-                    <input type="text" className="inputs"{...register('URL', { required: true })} />
-                    {errors.name && <p className="required">Se requiere un enlace</p>}
-                </div>
-                <div className="input-container">
-                    <label>Descripcion</label>
-                    <input type="text" className="inputs"{...register('description', { required: true })} />
-                    {errors.name && <p className="required">Se requiere una descripcion</p>}
-                </div>
-                <div className='button-container'>
-                    <button className="buttons" type="submit">Registrar video</button>
-                </div>
-                <div className="cancel-link">
-                    <Link to="/videogestor">Cancelar</Link>
-                </div>
-            </form>
+            <ReusableForm
+                error={errors}
+                fields={fields}
+                formName="register-video-form"
+                formTitle="Registro de video"
+                formAction="Agregar"
+                formReturnText="¿Deseas Volver?"
+                formReturnDirection="/videogestor"
+                onSubmit={handleAdd}
+            />
         </div>
     )
 }

@@ -27,10 +27,10 @@ export const AuthChildProvider = ({ children  }) => {
 
     const getChildrens = async () => {
         try {
-            const res = await getChildrensRequest();
-            setChildr(res.data);
+            const ChildrenResquest = await getChildrensRequest();
+            setChildr(ChildrenResquest.data);
         } catch (error) {
-            console.log("front: Error obteniendo hijos:", error);
+            console.log("front: Error obteniendo hijos:"+error.response?.data?.[0]);
         }
     };
 

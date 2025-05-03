@@ -1,0 +1,94 @@
+.form-container {
+  width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+  form {
+    background-color: rgb(20, 155, 155);
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    display: grid;
+
+    .error {
+      background-color: rgba(255, 0, 0, 0.1);
+      color: #d9534f;
+      padding: 10px;
+      margin: 10px 0;
+      font-weight: bold;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    h1 {
+      text-align: center;
+      color: rgb(32, 39, 1);
+      margin: 0 0 10px 0;
+    }
+
+    div {
+      flex-direction: column;
+      margin-top: 4px;
+
+      label {
+        color: rgb(58, 52, 52);
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      input {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid black;
+        font-size: 12px;
+        margin-top: 5px;
+        width: 92%;
+      }
+
+      .avatar-selection {
+        display: flex;
+        flex-direction: column; // Mantén el título y las imágenes en columnas
+        gap: 10px; // Espaciado entre el título y las imágenes
+        padding: 10px;
+        background: #f9f9f9;
+        border-radius: 10px;
+
+        .avatars {
+          display: grid; // Coloca las imágenes en una fila
+          grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+          gap: 10px; // Espaciado entre las imágenes
+          justify-content: center; // Centra las imágenes horizontalmente
+          width: 100%; // Asegura que el contenedor ocupe todo el ancho disponible
+        }
+
+        .avatar {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          cursor: pointer;
+          border: 4px solid transparent;
+          transition: border-color 0.3s ease;
+          object-fit: cover;
+
+          &.selected {
+            border-color: #0bf358; // Color para el avatar seleccionado
+          }
+        }
+      }
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: rgb(235, 145, 11);
+      border-radius: 10px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(235, 145, 11, 0.8);
+      }
+    }
+  }
+}

@@ -27,7 +27,9 @@ export const removeVideoFromPlaylist = async (id, Video) => axios.put(`api/remov
 
 export const getOnePlayListRequest = async (id) => axios.get("api/playlist", { params: { id } })
 export const getAllPlaylistsRequest = () => axios.get("api/allplaylist");
-export const createPlaylistRequest = async (name) => axios.post("api/playlist", { name: name })
+
+export const createPlaylistRequest = async (name) => axios.post("api/playlist", name)
+
 export const deletePlaylistRequest = async (id) => axios.delete("api/playlist", { data: { playlistID: id } });
 export const updatePlaylistRequest = async (id, name) => axios.put(`api/playlist?id=${id}`, name)
 
