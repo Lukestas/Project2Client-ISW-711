@@ -29,9 +29,7 @@ function RegisterPage() {
   const handleRegisterParent = async (formData) => {
     try {
       const ParentRegisterResquest = await registerParentRequest(formData)
-      console.log('ParentRegisterResquest', ParentRegisterResquest)
       if (!ParentRegisterResquest.data) {
-        console.log('ParentRegisterResquest', ParentRegisterResquest)
         setErrors(ParentRegisterResquest.data)
       }
     } catch (error) {

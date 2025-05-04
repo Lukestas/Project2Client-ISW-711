@@ -23,6 +23,7 @@ import EditPlaylistPage from './components/EditPlaylist/EditPlaylistPage';
 import ChildVideoPlay from './pages/ChildVideoPage'
 import VerificationPage from './pages/VerificationPage';
 import VerificationMail from './pages/VerificationMail';
+import { ResultsVideoSearchPage } from './pages/ResultsVideoSearchPage';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
                 <Route path='/videogestor' element={<VideoPage />} />
                 <Route path='/register-new-video' element={<RegisterVideoPage />} />
                 <Route path="/video-edit" element={<EditVideoPage />} />
+                <Route path="/results" element={<ResultsVideoSearchPage />} />
 
                 <Route path="/playlistgestor" element={<PlaylistPage />} />
                 <Route path="/create-playlist" element={<CreatePlaylist />} />

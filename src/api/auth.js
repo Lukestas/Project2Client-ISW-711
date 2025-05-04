@@ -17,10 +17,10 @@ export const getVideosRequest = async (Videos) => axios.get(`api/videos`, Videos
 
 export const registerVideoRequest = async (Video) => axios.post(`api/video`, Video)
 export const getAllVideosRequest = () => axios.get(`api/allvideos`);
-export const getOneVideoRequest = async (id) => axios.get("api/video", { params: { id } });
+export const getOneVideoRequest = async (id) => axios.get(`api/video?youtubeid=${id}`);
 export const updateVideoRequest = async (id, Video) => axios.put(`api/video`, Video, { params: { id } });
 
-export const disableVideoResquest = async (id) => axios.put(`api/disablevideo`, { videoId: id });
+export const disableVideoResquest = async (id) => axios.put(`api/disablevideo`, { youtubeid: id });
 
 
 export const removeVideoFromPlaylist = async (id, Video) => axios.put(`api/removevideo/playlist?id=${id}`, { videoId: Video })
@@ -38,3 +38,7 @@ export const assignPlaylistToChildRequest = async (childId, playlistId) => axios
 export const addVideoToPlaylist = async (id, Video) => axios.put(`api/addvideo/playlist?id=${id}`, { videoId: Video })
 export const vertifyEmailRequest = async (token) => axios.get(`api/auth/verify-email?token=${token}`)
 
+export const verifyPinParentRequest = async (pin) => axios.get(`api/auth/verifyPinParent`, pin)
+export const verifyPinChildRequest = async (pin, id) => axios.get(`api/child/verifyPinChild`, pin, id)
+
+export const getYoutubeSearchRequest = async (query) => axios.get(`api/youtubesearch?search=${query}`)
