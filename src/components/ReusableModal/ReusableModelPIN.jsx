@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReusableForm from "../ReusableForm/ReusableForm";
-//import "./ModelPIN.scss";
+import "./ReusableModelPIN"
 
 const ReusableModelPIN = ({ isOpen, onClose, onSubmit, selectedChild, pinType }) => {
     const [pin, setPin] = useState("");
@@ -9,7 +9,7 @@ const ReusableModelPIN = ({ isOpen, onClose, onSubmit, selectedChild, pinType })
     const fields = [
         { label: "PIN", name: "pin", type: "password", required: true, placeholder: "Enter your PIN" },
     ];
-    
+
 
     const handlePin = async (e) => {
         e.preventDefault();
@@ -35,17 +35,27 @@ const ReusableModelPIN = ({ isOpen, onClose, onSubmit, selectedChild, pinType })
     }
 
     return (
-        <div className="model-pin">
-            <ReusableForm
-                error={errors}
-                fields={fields}
-                formTitle="Ingrese el PIN"
-                formName="pin-form"
-                formAction="Aceptar"
-                onSubmit={handlePin}
-                formReturnText="Cancelar"
-                formReturnDirection={onClose}
-            />
+        <div className="pin-modal">
+            <div className="modal-content">
+                <h2>{title}</h2>
+                {description && <p>{description}</p>}
+                <form className="form-modal-pin" onSubmit>
+                    <input type="password" placeholder="Ingrese el PIN" value={pin} />
+                    {error && <p className="error-message">{error}</p>}
+                    <div className="modal-buttons">
+                        <button type="submit" className="enter-pin">Aceptar</button>
+                        <button type="button" className="cancel-pin" onClick={onClose}>Cancelar</button>
+                    </div>
+                </form>
+                {options.length > 0 && (
+                    <div className="modal-options">
+                        {options.map((option, index) => (
+                            <button key={index} className={option.className} onClick={option.onClick}>{option.label}</button>
+
+                        ))}
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

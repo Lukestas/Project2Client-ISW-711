@@ -8,7 +8,7 @@ const CreatePlaylist = () => {
     const [errors, setErrors] = useState(null)
 
     const fields = [
-        { label: "Playlist Name", name: "name", type: "text", placeholder: "Nombre de la Playlist", required: true }
+        { label: "Nombre de la Playlist", name: "name", type: "text", placeholder: "Nombre de la Playlist", required: true }
     ]
 
     useEffect(() => {

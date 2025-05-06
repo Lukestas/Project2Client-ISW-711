@@ -24,6 +24,7 @@ import ChildVideoPlay from './pages/ChildVideoPage'
 import VerificationPage from './pages/VerificationPage';
 import VerificationMail from './pages/VerificationMail';
 import { ResultsVideoSearchPage } from './pages/ResultsVideoSearchPage';
+import { VerificationSMSPage } from './pages/VerificationSMSPage';
 
 function App() {
   return (
@@ -37,7 +38,8 @@ function App() {
               <Route path="*" element={<h1>La pagina no existe</h1>} />
               <Route path='/verification' element={<VerificationPage />} />
               <Route path='/verify-email' element={<VerificationMail />} />
-              
+              <Route path='/verify-sms' element={<VerificationSMSPage />} />
+
               <Route element={<ProtectedRoute />}>
                 <Route path='/home' element={<HomePage />} />
 

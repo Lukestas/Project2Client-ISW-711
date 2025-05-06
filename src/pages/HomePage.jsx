@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import "./scss/HomePage.scss"
 import { useNavigate } from 'react-router-dom';
 import { getChildrensByParentId } from '../api/graphqlQuerys';
+import { NavBar } from '../components/NavBar/NavBar';
 
 function HomePage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -38,11 +39,6 @@ function HomePage() {
     setIsPinModalOpen(true);
   };
 
-  const handleLogout = () => {
-    logout();
-    navigate("/");
-  }
-
   const handleEditChild = (e) => {
     e.preventDefault();
     if (selectedChild) {
@@ -68,16 +64,6 @@ function HomePage() {
     }
   }
   )
-
-  const handleAccessToVideoGestor = () => {
-    setIsParentPinModalOpen(true);
-    setRouteP('/videogestor')
-  };
-
-  const handleAccessToPlaylistGestor = () => {
-    setIsParentPinModalOpen(true);
-    setRouteP('/playlistgestor')
-  };
   const handleRegisterChild = () => {
     setIsParentPinModalOpen(true);
     setRouteP('/register-child')
@@ -102,19 +88,13 @@ function HomePage() {
 
   return (
     <div className="home-container">
-      <div className="Options">
-        <div className='redirection-buttons'>
-          <button className="add-child-button" onClick={handleRegisterChild}>
-            Agregar Niño
-          </button>
-          <button className="video-button" onClick={handleAccessToVideoGestor}>
-            Videos
-          </button>
-          <button className="playlist-button" onClick={handleAccessToPlaylistGestor}>Playlist</button>
-        </div>
-        <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
+      <NavBar />
+      <div className='home-welcome'>
+        <h1>Panel de Padres</h1>
+        <button className="add-child-button" onClick={handleRegisterChild}>
+          Agregar Niño
+        </button>
       </div>
-      <h1>Bienvenido al Panel de Padres</h1>
       <div className="children-list">
         {childrens.map((child) => (
           <div

@@ -1,0 +1,80 @@
+.NavBar {
+    font-family: 'Arial', sans-serif;
+    font-size: medium;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    .Redirection-buttons {
+        display: flex;
+        gap: 10px;
+        .go-video-gestor {
+            display: block;
+            background-color: #1ca2c4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .go-home {
+            display: block;
+            background-color: #3ad15b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .go-playlist-gestor {
+            display: block;
+            background-color: #ca20c2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    }
+
+    .SearchBar {
+        display: flex;
+        h1 {
+            color: #ca20c2;
+        }
+        input{
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            outline: none;
+            margin-left: 10px;
+        }
+        button{
+            background-color: #1ca2c4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    }
+
+    .Logout {
+        button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+}

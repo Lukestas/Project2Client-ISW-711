@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./ReusableForm.scss";
+import { useAuth } from '../../context/AuthContext';
 
 // This component is a reusable form that can be used in different parts of the application.
-const ReusableForm = ({ fields, formName, formAction, formTitle, formReturnText, formReturnDirection, error, onSubmit }) => {
+const ReusableForm = ({ fields, formName, formAction, formTitle, formReturnText, formReturnDirection, error, onSubmit, defaultAvatar,clearCookiesOnReturn = false }) => {
     const [selectedAvatar, setSelectedAvatar] = useState(null);
+    const {logout}=useAuth()
 
     // This function handles the form submission. It prevents the default form submission behavior and collects the form data.
     const handleSubmit = (event) => {
@@ -15,6 +17,19 @@ const ReusableForm = ({ fields, formName, formAction, formTitle, formReturnText,
         }
         onSubmit(data);
     };
+
+    const handleReturn = () => {
+        if (clearCookiesOnReturn) {
+            logout()
+        }
+        window.location.href = formReturnDirection; 
+    };
+
+    useEffect(() => {
+        if (defaultAvatar) {
+            setSelectedAvatar(defaultAvatar);
+        }
+    }, [defaultAvatar]);        
 
     // This function renders the form fields based on the provided fields prop.
     return (
@@ -38,6 +53,11 @@ const ReusableForm = ({ fields, formName, formAction, formTitle, formReturnText,
                           ))}
                         </div>
                       </div>
+                    ) : field.image ? (
+                        <div className="image-preview">
+                            <label>{field.label}</label>
+                            <img src={field.image} alt="Preview" className="form-image"/>
+                        </div>
                     ) : (
                         <label>
                             {field.label}
@@ -46,6 +66,8 @@ const ReusableForm = ({ fields, formName, formAction, formTitle, formReturnText,
                                 name={field.name}
                                 placeholder={field.placeholder || ''}
                                 required={field.required || false}
+                                defaultValue={field.defaultValue || ''}
+                                readOnly={field.readOnly || false}
                                 {...field.props}
                             />
                         </label>
@@ -54,7 +76,7 @@ const ReusableForm = ({ fields, formName, formAction, formTitle, formReturnText,
             ))}
             <button type="submit">{formAction}</button>
             {formReturnText && (
-                <button type="button" onClick={() => (window.location.href = formReturnDirection)}>{formReturnText}</button>
+                <button type="button" onClick={handleReturn}>{formReturnText}</button>
             )}
         </form>
     );

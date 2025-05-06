@@ -1,5 +1,5 @@
 .video-list {
-    display: grid;
+    display:grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     padding: 20px;
@@ -51,19 +51,27 @@
                 cursor: pointer;
                 font-size: 14px;
 
-                &:first-child {
-                    background-color: #0073e6;
-                    color: #fff;
-                }
-
-                &:last-child {
-                    background-color: #27ae60;
-                    color: #fff;
-                }
-
                 &:hover {
                     opacity: 0.9;
                 }
+            }
+            .Edit-button {
+                background-color: #0073e6;
+                color: #fff;
+            }
+
+            .Delete-button {
+                background-color: #aa3342;
+                color: #fff;
+            }
+            .Save-button {
+                background-color: #24ce70;
+                color: #fff;
+            }
+
+            .AddToPlaylist-button {
+                background-color: #c4b105;
+                color: #fff;
             }
         }
     }

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { registerParentRequest } from '../api/auth';
+import { useNavigate } from "react-router-dom";
 import ReusableForm from '../components/ReusableForm/ReusableForm';
 
 function RegisterPage() {
   const [errors, setErrors] = useState(null);
+  const navigate=useNavigate();
 
   useEffect(() => {
     if (errors) {
@@ -32,6 +34,7 @@ function RegisterPage() {
       if (!ParentRegisterResquest.data) {
         setErrors(ParentRegisterResquest.data)
       }
+      navigate("/verification")
     } catch (error) {
       setErrors(error.response?.data?.[0]);
     }

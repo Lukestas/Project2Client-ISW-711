@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import "./NavBar.scss"
 
 export const NavBar = () => {
     const [searchString, setSearchString] = useState("");
@@ -27,24 +28,24 @@ export const NavBar = () => {
     }
 
     return (
-        <div className='searchBar'>
+        <div className='NavBar'>
 
-            <div className='redirection-buttons'>
-                <button className="Home" onClick={() => { navigate("/home") }}>Inicio</button>
-                <button className="Video-gestor" onClick={() => { navigate("/videogestor") }}>Videos</button>
-                <button className="playlist-gesor" onClick={() => { navigate("/playlistgestor") }}>Playlists</button>
+            <div className='Redirection-buttons'>
+                <button className="go-home" onClick={() => { navigate("/home") }}>Inicio</button>
+                <button className="go-video-gestor" onClick={() => { navigate("/videogestor") }}>Videos</button>
+                <button className="go-playlist-gestor" onClick={() => { navigate("/playlistgestor") }}>Playlists</button>
             </div>
-            
-            <h1>Buscar Videos</h1>
-            <div className='searchBar-input'>
+            <div className='SearchBar'>
+                <h1>Buscar Videos</h1>
                 <input type="text" placeholder='Buscar...' value={searchString} onChange={(e) => setSearchString(e.target.value)} />
                 <button onClick={handleSearch}>Buscar</button>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
             </div>
 
-            <div>
+            <div className='Logout'>
                 <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
             </div>
         </div>
     )
 }
+

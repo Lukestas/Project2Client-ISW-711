@@ -3,7 +3,7 @@ import axios from './axios'
 export const registerParentRequest = async (Parent) => axios.post(`api/auth/register`, Parent)
 export const loginParentRequest = async (Parent) => axios.post(`api/auth/login`, Parent)
 export const verifyTokenRequest = async (Parent) => axios.get(`api/auth/verify`, Parent)
-export const logoutParentRequest = async () => axios.post(`api/auth/logout`)
+export const logoutParentRequest = async (id) => axios.post(`api/auth/logout`, {id})
 export const getParentRequest = async () => axios.get('api/auth/parent')
 
 export const getChildrensRequest = () => axios.get("api/childrens");
@@ -17,8 +17,12 @@ export const getVideosRequest = async (Videos) => axios.get(`api/videos`, Videos
 
 export const registerVideoRequest = async (Video) => axios.post(`api/video`, Video)
 export const getAllVideosRequest = () => axios.get(`api/allvideos`);
+
+
 export const getOneVideoRequest = async (id) => axios.get(`api/video?youtubeid=${id}`);
-export const updateVideoRequest = async (id, Video) => axios.put(`api/video`, Video, { params: { id } });
+
+
+export const updateVideoRequest = async (id, title, description) => axios.put(`api/video?youtubeid=${id}`,{title,description});
 
 export const disableVideoResquest = async (id) => axios.put(`api/disablevideo`, { youtubeid: id });
 
@@ -35,10 +39,13 @@ export const updatePlaylistRequest = async (id, name) => axios.put(`api/playlist
 
 export const assignPlaylistToChildRequest = async (childId, playlistId) => axios.put('api/assignPlaylist', { childId, playlistId })
 
-export const addVideoToPlaylist = async (id, Video) => axios.put(`api/addvideo/playlist?id=${id}`, { videoId: Video })
+export const addVideoToPlaylist = async (id, Video) => axios.put(`api/addvideo/playlist?id=${id}`, { youtubeid: Video })
 export const vertifyEmailRequest = async (token) => axios.get(`api/auth/verify-email?token=${token}`)
 
 export const verifyPinParentRequest = async (pin) => axios.get(`api/auth/verifyPinParent`, pin)
 export const verifyPinChildRequest = async (pin, id) => axios.get(`api/child/verifyPinChild`, pin, id)
 
 export const getYoutubeSearchRequest = async (query) => axios.get(`api/youtubesearch?search=${query}`)
+
+export const verificationSMSRequest=async(phone,code)=> axios.post("/api/auth/verify-code", {phone, code});
+export const sendSMSVerificationRequest=async(phone)=>axios.post("/api/auth/send-code", {phone} );

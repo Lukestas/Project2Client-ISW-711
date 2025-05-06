@@ -12,9 +12,7 @@ const VerificationMail = () => {
     useEffect(() => {
         const verifyEmail = async () => {
             try {
-                console.log("Token de verificación:", token); // Verifica el token en la consola
                 const Parent = await vertifyEmailRequest(token);
-                console.log(Parent.data); // Verifica la respuesta en la consola
                 if (Parent.data) {
                     navigate("/")
                 }

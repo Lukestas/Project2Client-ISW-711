@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import './scss/VideoPage.scss'
-import { addVideoToPlaylist, disableVideoResquest, getAllVideosRequest } from '../api/auth'
+import { addVideoToPlaylist, disableVideoResquest, getParentRequest } from '../api/auth'
 import { useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { NavBar } from '../components/searchBar/NavBar'
+import { NavBar } from '../components/NavBar/NavBar'
 import { VideosList } from '../components/videosList/VideosList'
+import { getPlaylistByParentId, getVideosByParentId } from '../api/graphqlQuerys'
+import "./scss/VideoPage.scss"
 
 function VideoPage() {
-    const { handleSubmit } = useForm();
-    const [videos, setVideos] = useState([])
-    const [selectedVideo, setSelectedVideo] = useState(null)
-    const [errors, setErrors] = useState(null)
-    const navigate = useNavigate()
+    const [videos, setVideos] = useState([]);
+    const [playlists, setPlaylists] = useState([]);
+    const [selectedVideo, setSelectedVideo] = useState(null); // Video seleccionado para asignar
+    const [isPlaylistModalOpen, setIsPlaylistModalOpen] = useState(false);
+    const [errors, setErrors] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const getVideos = async () => {
+        const getVideosandPlaylist = async () => {
             try {
-                const allVideoResquest = await getAllVideosRequest()
-                setVideos(allVideoResquest.data)
-                console.log(allVideoResquest.data)
+                const parentRequest = await getParentRequest()
+                const videosRequest = await getVideosByParentId(parentRequest.data._id)
+                const playlistRequest = await getPlaylistByParentId(parentRequest.data._id)
+                setVideos(videosRequest)
+                setPlaylists(playlistRequest)
             } catch (error) {
                 console.log("Error al obtener los videos: ", error);
             }
         }
-        getVideos();
+        getVideosandPlaylist();
     }, [])
 
     useEffect(() => {
@@ -35,52 +38,25 @@ function VideoPage() {
         }
     }, [errors]);
 
-    /*const handleAssignPlaylist = (videoId) => {
+    const handleAssignPlaylist = (videoId) => {
         setSelectedVideo(videoId);
         setIsPlaylistModalOpen(true);
     };
 
-    const handleEditVideo = (videoId) => {
-        navigate(`/video-edit?id=${videoId}`);
-    };
-
     const handleAssignPlaylistToVideo = async (playlistId) => {
         try {
-            console.log("hola")
             const AssignVideo = await addVideoToPlaylist(playlistId, selectedVideo)
-            console.log(`Asignando playlist ${playlistId} al video ${selectedVideo}`);
+            console.log(playlistId,selectedVideo)
             setIsPlaylistModalOpen(false);
         } catch (error) {
             console.error("Error al asignar la playlist: ", error);
         }
     };
 
-    const ParentPinSubmit = handleSubmit(async () => {
-        const Parent = await getParentRequest();
-        if (pin !== Parent.data.pin) return setPinError("el pin es incorrecto")
-        try {
-            if (routeP === "toDelete") {
-                await disableVideoResquest(selectedVideo);
-                const updatedVideos = await getAllVideosRequest();
-                setVideos(updatedVideos.data);
-            }
-            setIsPinModalOpen(false);
-        } catch (error) {
-            console.log("Error eliminando el video:", error);
-            setIsPinModalOpen(false);
-            alert("Hubo un error al eliminar el video");
-        }
-    })
-
-    */
-
     const handleEditVideo = (videoId) => {
         navigate(`/video-edit?id=${videoId}`);
     };
 
-    const handleAddToPlaylist = async (videoId) => {
-        console.log("Video agregado a la lista de reproducción:", videoId);
-    }
 
     const handleDisableVideo = async (data) => {
         try {
@@ -89,8 +65,9 @@ function VideoPage() {
             if (!videoDisableRequest) {
                 setErrors("No se pudo desactivar el video")
             }
-            const allVideoResquest = await getAllVideosRequest()
-            setVideos(allVideoResquest.data)
+            const parentRequest = await getParentRequest()
+            const videosRequest = await getVideosByParentId(parentRequest.data._id)
+            setVideos(videosRequest)
         } catch (error) {
             setErrors(error.response?.data?.[0]);
         }
@@ -99,7 +76,30 @@ function VideoPage() {
     return (
         <div className='video-page-container'>
             <NavBar />
-            <VideosList error={errors} videos={videos} onEditVideo={handleEditVideo} onAddToPlaylist={handleAddToPlaylist} onDisableVideo={handleDisableVideo} />
+            <VideosList error={errors} videos={videos} onEditVideo={handleEditVideo} onAddToPlaylist={handleAssignPlaylist} onDisableVideo={handleDisableVideo} />
+            {
+                isPlaylistModalOpen && (
+                    <div className="assign-modal">
+                        <div className="modal-content">
+                            <h2>Selecciona una playlist</h2>
+                            <div className="playlist-list">
+                                {playlists.map((playlist) => (
+                                    <div
+                                        key={playlist._id}
+                                        className="playlist-item"
+                                        onClick={() => handleAssignPlaylistToVideo(playlist._id)}
+                                    >
+                                        <span>{playlist.name}</span>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="modal-buttons">
+                                <button className="cancel" type="button" onClick={() => setIsPlaylistModalOpen(false)}>Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
         </div>
     );
 }

@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { disableVideoResquest, getYoutubeSearchRequest, registerVideoRequest } from "../api/auth";
 import "./scss/ResultsVideoSearch.scss"
-import { NavBar } from "../components/searchBar/NavBar";
+import { NavBar } from "../components/NavBar/NavBar";
 import { VideosList } from "../components/videosList/VideosList";
 
 export const ResultsVideoSearchPage = () => {
   const [videos, setVideos] = useState([]);
   const location = useLocation();
   const [errors, setErrors] = useState(null);
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
   const searchParams = new URLSearchParams(location.search);
   const searchQuery = searchParams.get('search');
@@ -39,7 +39,7 @@ export const ResultsVideoSearchPage = () => {
     try {
       console.log("Video guardado:", data);
       const videoSaveRequest = await registerVideoRequest(data);
-      if(!videoSaveRequest) {
+      if (!videoSaveRequest) {
         setErrors("No se pudo guardar el video");
       }
       navigate("/videogestor")
@@ -54,7 +54,7 @@ export const ResultsVideoSearchPage = () => {
     <div className="results-video-search-page">
       <NavBar />
       <h1>Resultados de Búsqueda</h1>
-      <VideosList error={errors} videos={videos} onSaveVideo={handleSaveVideo} />
+        <VideosList error={errors} videos={videos} onSaveVideo={handleSaveVideo} />
     </div>
   )
 }

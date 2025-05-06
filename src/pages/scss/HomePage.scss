@@ -1,65 +1,25 @@
 .home-container {
   font-family: 'Arial', sans-serif;
-  padding: 20px;
   background-color: #f8f9fa;
   min-height: 100vh;
 
-  .Options {
+  .home-welcome {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    margin: 20px;
+    h1 {
+      color: #3498db;
+    }
 
-    .logout-button {
-      background-color: #e74c3c;
-      color: white;
+    button {
       border: none;
-      padding: 10px 20px;
       border-radius: 5px;
+      margin-left: 20px;
+      background-color: rgb(221, 125, 16);
+      color: white;
+      font-size: medium;
+      padding: 10px 20px;
       cursor: pointer;
-    }
-
-    .redirection-buttons {
-      display: flex;
-      gap: 10px;
-
-      .add-child-button {
-        display: block;
-        background-color: #27ae60;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-      }
-
-      .video-button {
-        display: block;
-        background-color: #27cef8;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-      }
-      .playlist-button {
-        display: block;
-        background-color: #ca20c2;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-      }
-    }
-  }
-
-  h1 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 30px;
+    } 
   }
 
   .children-list {
