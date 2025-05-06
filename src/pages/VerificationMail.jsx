@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { vertifyEmailRequest } from '../api/auth';
 
+// This component is used to verify the email of the user
 const VerificationMail = () => {
     const location = useLocation()
     const queryParams = new URLSearchParams(location.search);

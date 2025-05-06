@@ -1,5 +1,6 @@
 import './VideoList.scss'
 
+// This component is used to render a list of videos. It receives an array of videos and a function to handle the actions for each video.
 export const VideosList = ({ error, videos, onSaveVideo, onAddToPlaylist, onDisableVideo, onEditVideo }) => {
 
     return (

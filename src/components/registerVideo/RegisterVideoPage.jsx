@@ -3,7 +3,8 @@ import {useNavigate } from 'react-router-dom'
 import ReusableForm from '../ReusableForm/ReusableForm'
 import { useEffect, useState } from 'react'
 
-
+// This component is used to register a video.
+// It uses the ReusableForm component to render a form with the fields defined in the fields array.
 function RegisterVideoPage() {
     const [errors, setErrors] = useState(null)
     const navigate = useNavigate()

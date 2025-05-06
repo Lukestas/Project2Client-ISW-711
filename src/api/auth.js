@@ -1,5 +1,9 @@
 import axios from './axios'
 
+
+//All the requests to the backend are here
+//Parent requests, Child requests, Video requests, Playlist requests, etc.
+
 export const registerParentRequest = async (Parent) => axios.post(`api/auth/register`, Parent)
 export const loginParentRequest = async (Parent) => axios.post(`api/auth/login`, Parent)
 export const verifyTokenRequest = async (Parent) => axios.get(`api/auth/verify`, Parent)

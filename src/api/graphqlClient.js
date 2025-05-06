@@ -1,7 +1,7 @@
 import axios from "./axios";
 
-//Communication with the server using GraphQL
-//This function sends a GraphQL request to the server and returns the response data
+//Communication with the backend using GraphQL
+//This function sends a GraphQL request to the backend and returns the response data
 
 export async function graphqlRequest(query, variables = {}) {
     try {

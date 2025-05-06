@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom"
 
+// This component is used to display the login page for the child
 
 function LoginChildPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();

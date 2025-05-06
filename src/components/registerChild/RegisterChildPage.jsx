@@ -15,6 +15,9 @@ const avatars = [
   "/avatars/avatar8.png"
 ];
 
+
+// This component is used to register a child.
+// It uses the ReusableForm component to render a form with the fields defined in the fields array.
 function RegisterChildPage() {
   const [errors, setErrors] = useState(null);
   const navigate= useNavigate()

@@ -6,6 +6,9 @@ import { getChildRequest, getParentRequest, updateChildRequest } from '../../api
 import ReusableForm from '../ReusableForm/ReusableForm';
 import { getChildById } from '../../api/graphqlQuerys';
 
+// This component is used to edit a child. 
+//It uses the ReusableForm component to render the form and handle the submission. 
+// It also uses the getChildRequest function to get the child data from the server and updateChildRequest function to update the child data on the server.
 const avatars = [
     "/avatars/avatar0.png",
     "/avatars/avatar1.png",
@@ -23,7 +26,7 @@ function EditChildPage() {
     const navigate = useNavigate();
     const [error, setError] = useState('');
     const [fields, setFields] = useState([])
-    const [child,setChild]=useState("")
+    const [child, setChild] = useState("")
 
     const queryParams = new URLSearchParams(location.search);
     const id = queryParams.get('id');
@@ -41,17 +44,18 @@ function EditChildPage() {
                         placeholder: "Nombre de niño",
                         defaultValue: childRequest.name,
                     },
-                    { 
-                        type: 'number', 
-                        name: 'pin', 
-                        label: 'PIN', 
-                        required: true, 
-                        minLength: 4, 
-                        maxLength: 6 },
-                    { 
-                        type: 'avatar', 
-                        name: 'avatar', 
-                        label: 'Avatar', 
+                    {
+                        type: 'number',
+                        name: 'pin',
+                        label: 'PIN',
+                        required: true,
+                        minLength: 4,
+                        maxLength: 6
+                    },
+                    {
+                        type: 'avatar',
+                        name: 'avatar',
+                        label: 'Avatar',
                         options: avatars
                     }
                 ]);
@@ -65,7 +69,7 @@ function EditChildPage() {
 
     const handleUpdate = async (formData) => {
         try {
-            const {name,avatar,pin} = formData
+            const { name, avatar, pin } = formData
             await updateChildRequest(id, { name, avatar, pin });
             navigate('/home');
         } catch (err) {

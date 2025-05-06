@@ -4,6 +4,7 @@ import { useAuth } from "./AuthContext";
 
 export const AuthChildContext = createContext();
 
+// This hook is used to access the AuthChildContext. It throws an error if it is not used within an AuthChildProvider.
 export const useAuthChild = () => {
     const context = useContext(AuthChildContext);
     if (!context) {

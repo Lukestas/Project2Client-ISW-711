@@ -2,6 +2,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { registerParentRequest, loginParentRequest, verifyTokenRequest, logoutParentRequest } from '../api/auth';
 import Cookies from 'js-cookie'
 
+// This context is used to manage the authentication state of the parent user in the application.
+// It provides functions to sign up, sign in, and log out the user, as well as to check if the user is authenticated.
+
 export const AuthContext = createContext()
 export const useAuth = () => {
     const context = useContext(AuthContext)

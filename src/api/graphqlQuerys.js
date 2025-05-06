@@ -16,7 +16,7 @@ export const getChildrensByParentId = async (id) => {
     const data = await graphqlRequest(query)
     return data.getParentById?.children || [];
 }
-
+// Call to get all playlists of a child
 export const getPlaylistsByChildId = async (id) => {
     
     const query = `
@@ -37,7 +37,7 @@ export const getPlaylistsByChildId = async (id) => {
     const data = await graphqlRequest(query)
     return data.getChildById?.playlists || [];
 }
-
+//Call to get a child by id
 export const getChildById=async(id)=>{
     const query=`
     query{
@@ -52,7 +52,7 @@ export const getChildById=async(id)=>{
     console.log(data)
     return data.getChildById || [];
 }
-
+//Call to get all videos of a parent
 export const getVideosByParentId = async (id) => {
     const query = `
         query{
@@ -70,7 +70,7 @@ export const getVideosByParentId = async (id) => {
     const data = await graphqlRequest(query)
     return data.getParentById?.videos || [];
 }
-
+//call to get one video info by id
 export const getVideoById = async (id) => {
     const query = `
     query{
@@ -87,6 +87,7 @@ export const getVideoById = async (id) => {
     return data.getVideoById || null;
 }
 
+//Call to get all playlists of a parent
 export const getPlaylistByParentId = async (id) => {
     const query = `
     query{

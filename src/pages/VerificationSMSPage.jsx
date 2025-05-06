@@ -4,6 +4,8 @@ import {verificationSMSRequest } from "../api/auth";
 import { useAuth } from "../context/AuthContext";
 import ReusableForm from "../components/ReusableForm/ReusableForm"
 
+// This component is used to display the verification page for the parent
+// It uses the ReusableForm component to display the form
 export const VerificationSMSPage = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();

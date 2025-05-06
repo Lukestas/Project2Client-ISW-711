@@ -5,6 +5,11 @@ import { NavBar } from '../components/NavBar/NavBar';
 import "./scss/PlaylistPage.scss"
 import { getChildrensByParentId, getPlaylistByParentId } from '../api/graphqlQuerys';
 
+
+// This component is used to display the playlists of the parent
+// It fetches the playlists of the parent and displays them
+// It also allows the parent to create, edit and delete playlists
+// It also allows the parent to assign playlists to children
 function PlaylistPage() {
     const navigate = useNavigate()
     const [playlists, setPlaylists] = useState([])

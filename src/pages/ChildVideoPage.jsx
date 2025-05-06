@@ -4,6 +4,9 @@ import { useLocation } from 'react-router-dom';
 import { getPlaylistsByChildId } from '../api/graphqlQuerys';
 import { NavBar } from '../components/NavBar/NavBar';
 
+
+// This component is used to display the videos of a specific child
+// It fetches the playlists of the child and displays them
 function ChildVideoPage() {
     const [playlists, setPlaylists] = useState([])
     const [selectedPlaylist, setSelectedPlaylist] = useState(null);

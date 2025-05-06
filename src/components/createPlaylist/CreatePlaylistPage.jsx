@@ -3,6 +3,9 @@ import { createPlaylistRequest } from '../../api/auth'
 import ReusableForm from '../ReusableForm/ReusableForm'
 import { useEffect, useState } from 'react'
 
+//This component is used to create a playlist. 
+// It uses the ReusableForm component to render the form and handle the submission. 
+
 const CreatePlaylist = () => {
     const navigate = useNavigate()
     const [errors, setErrors] = useState(null)

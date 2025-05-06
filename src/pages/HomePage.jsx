@@ -7,6 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import { getChildrensByParentId } from '../api/graphqlQuerys';
 import { NavBar } from '../components/NavBar/NavBar';
 
+
+//This component is used to display the home page of the parent
+//It fetches the children of the parent and displays them
 function HomePage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { logout } = useAuth();

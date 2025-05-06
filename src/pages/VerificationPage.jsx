@@ -1,6 +1,8 @@
 import React from 'react';
 import './scss/VerificationPage.scss';
 
+// This component is used to display the verification page after the user has registered
+// It informs the user that a verification email has been sent to their email address
 const VerificationPage = () => {
     return (
         <div className='verification-container'>

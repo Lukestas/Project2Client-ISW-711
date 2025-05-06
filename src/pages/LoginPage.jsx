@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import ReusableForm from "../components/ReusableForm/ReusableForm";
 
 
+//This component is used to display the login page for the parent
+//It uses the ReusableForm component to display the form
+//It uses the useAuth hook to get the signin function and the isAuthenticated state
 function LoginPage() {
 
   const { signin, isAuthenticated, errors: signinErrors } = useAuth();

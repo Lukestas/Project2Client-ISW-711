@@ -6,6 +6,8 @@ import { VideosList } from '../components/videosList/VideosList'
 import { getPlaylistByParentId, getVideosByParentId } from '../api/graphqlQuerys'
 import "./scss/VideoPage.scss"
 
+// This component is used to display the videos of the parent
+// It fetches the videos of the parent and displays them
 function VideoPage() {
     const [videos, setVideos] = useState([]);
     const [playlists, setPlaylists] = useState([]);

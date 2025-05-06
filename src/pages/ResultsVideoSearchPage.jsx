@@ -5,6 +5,7 @@ import "./scss/ResultsVideoSearch.scss"
 import { NavBar } from "../components/NavBar/NavBar";
 import { VideosList } from "../components/videosList/VideosList";
 
+// This component is used to display the youtube results of the video search page
 export const ResultsVideoSearchPage = () => {
   const [videos, setVideos] = useState([]);
   const location = useLocation();

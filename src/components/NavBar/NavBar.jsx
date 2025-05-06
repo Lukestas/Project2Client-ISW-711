@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import "./NavBar.scss"
 
+// This component is used to render the navigation bar of the application.
+// It contains a search bar, a logout button and buttons to navigate to the home, video and playlist pages.
 export const NavBar = () => {
     const [searchString, setSearchString] = useState("");
     const [error, setError] = useState(null);

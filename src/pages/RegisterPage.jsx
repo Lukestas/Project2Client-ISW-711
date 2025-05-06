@@ -3,6 +3,9 @@ import { registerParentRequest } from '../api/auth';
 import { useNavigate } from "react-router-dom";
 import ReusableForm from '../components/ReusableForm/ReusableForm';
 
+
+//This component is used to display the register page for the parent
+//It uses the ReusableForm component to display the form
 function RegisterPage() {
   const [errors, setErrors] = useState(null);
   const navigate=useNavigate();

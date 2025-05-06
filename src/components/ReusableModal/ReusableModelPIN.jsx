@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ReusableForm from "../ReusableForm/ReusableForm";
 import "./ReusableModelPIN"
 
+//This componenet is never used in the project.
+// It is a reusable modal component that is used to enter a PIN for parent or child.
 const ReusableModelPIN = ({ isOpen, onClose, onSubmit, selectedChild, pinType }) => {
     const [pin, setPin] = useState("");
     const [errors, setErrors] = useState(null);

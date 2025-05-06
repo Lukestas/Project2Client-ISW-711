@@ -1,10 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom"
-import { getOneVideoRequest, updateVideoRequest } from "../../api/auth"
+import { updateVideoRequest } from "../../api/auth"
 import { useEffect, useState } from "react"
 import ReusableForm from "../ReusableForm/ReusableForm"
 import { getVideoById } from "../../api/graphqlQuerys"
 
-
+// This component is used to edit a video. 
+// It uses the ReusableForm component to render a form with the fields defined in the fields array.
 function editVideoPage() {
     const navigate = useNavigate()
     const location = useLocation()
@@ -13,7 +14,7 @@ function editVideoPage() {
     const [error, setError] = useState('');
     const [video, setVideo] = useState(null);
     const [fields, setFields] = useState([]);
-    
+
 
     useEffect(() => {
         const getVideoData = async () => {
@@ -60,11 +61,11 @@ function editVideoPage() {
     }, [id]);
 
 
-    const handleSubmit=async (data) => {
+    const handleSubmit = async (data) => {
         try {
             console.log(data)
             const { title, description } = data;
-            const videoSaveRequest= await updateVideoRequest(id, title, description );
+            const videoSaveRequest = await updateVideoRequest(id, title, description);
             console.log(videoSaveRequest.data)
             navigate("/videogestor")
         } catch (error) {
